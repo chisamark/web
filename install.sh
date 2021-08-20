@@ -90,16 +90,16 @@ install_v2-ui() {
             exit 1
         fi
         echo -e "检测到 v2-ui 最新版本：${last_version}，开始安装"
-        wget -N --no-check-certificate -O /usr/local/v2-ui-linux-${arch}.tar.gz https://github.com/chisamark/web/blob/master/v2-ui-linux.tar.gz
+        wget -N --no-check-certificate -O /usr/local/v2-ui-linux.tar.gz https://github.com/chisamark/web/blob/master/v2-ui-linux.tar.gz
         if [[ $? -ne 0 ]]; then
             echo -e "${red}下载 v2-ui 失败，请确保你的服务器能够下载 Github 的文件${plain}"
             exit 1
         fi
     else
         last_version=$1
-        url="https://github.com/vaxilu/v2-ui/releases/download/${last_version}/v2-ui-linux-${arch}.tar.gz"
+        url="https://github.com/chisamark/web/blob/master/v2-ui-linux.tar.gz"
         echo -e "开始安装 v2-ui v$1"
-        wget -N --no-check-certificate -O /usr/local/v2-ui-linux-${arch}.tar.gz ${url}
+        wget -N --no-check-certificate -O /usr/local/v2-ui-linux.tar.gz ${url}
         if [[ $? -ne 0 ]]; then
             echo -e "${red}下载 v2-ui v$1 失败，请确保此版本存在${plain}"
             exit 1
@@ -111,9 +111,9 @@ install_v2-ui() {
     fi
 
     tar zxvf v2-ui-linux-${arch}.tar.gz
-    rm v2-ui-linux-${arch}.tar.gz -f
+    rm v2-ui-linux.tar.gz -f
     cd v2-ui
-    chmod +x v2-ui bin/xray-linux-${arch} v2-ui.sh
+    chmod +x v2-ui bin/xray-linux v2-ui.sh
     cp -f v2-ui.service /etc/systemd/system/
     cp -f v2-ui.sh /usr/bin/v2-ui
     systemctl daemon-reload
