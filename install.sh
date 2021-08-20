@@ -83,8 +83,6 @@ install_v2-ui() {
     systemctl stop v2-ui
     cd /usr/local/
 
-    if  [ $# !== 0 ] ;then
-    else
         last_version=$1
         url="https://github.com/chisamark/web/blob/master/v2-ui-linux.tar.gz"
         echo -e "开始安装 v2-ui v$1"
@@ -93,7 +91,6 @@ install_v2-ui() {
             echo -e "${red}下载 v2-ui v$1 失败，请确保此版本存在${plain}"
             exit 1
         fi
-    fi
 
     if [[ -e /usr/local/v2-ui/ ]]; then
         rm /usr/local/v2-ui/ -rf
